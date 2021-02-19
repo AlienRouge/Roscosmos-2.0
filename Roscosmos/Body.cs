@@ -22,12 +22,21 @@ namespace Roscosmos
         public static double Area;
         public static double Mass;
 
+        public static double FlightTime;
+        public static double MaxHeight;
+        public static double MaxDistance;
 
         public static void InitFlightParams()
         {
             Vx = V0 * Math.Cos(Angle * Math.PI / 180);
             Vy = V0 * Math.Sin(Angle * Math.PI / 180);
             K = 0.5 * C * Area * rho / Mass;
+
+            FlightTime = (V0 * Math.Sin(Angle * Math.PI / 180) +
+                          Math.Sqrt(Math.Pow(V0 * Math.Sin(Angle * Math.PI / 180), 2) +
+                                    2 * g * Y0)) / g;
+            MaxHeight = Y0 + Math.Pow(V0 * Math.Sin(Angle * Math.PI / 180), 2) / (2 * g);
+            MaxDistance = V0 * Math.Cos(Angle * Math.PI / 180) * FlightTime;
         }
 
         public static void CalculatePosition(ref (double, double) pos, double dt)

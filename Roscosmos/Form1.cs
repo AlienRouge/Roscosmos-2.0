@@ -33,6 +33,8 @@ namespace Roscosmos
 
             Body.InitFlightParams();
 
+            chart1.ChartAreas[0].AxisX.Maximum = Math.Round(Body.MaxDistance, 3);
+            chart1.ChartAreas[0].AxisY.Maximum = Math.Round(Body.MaxHeight, 3);
             chart1.Series[0].Points.Clear();
             chart1.Series[0].Points.AddXY(pos.Item1, pos.Item2);
 
